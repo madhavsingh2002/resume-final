@@ -1,0 +1,13 @@
+.btn-primary {
+    align-items: center;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    height: 2.5rem;
+    background-color:  #122647 ;
+    color: white;
+    cursor: pointer;
+  }
+  .header-red{
+    color: red;
+  }

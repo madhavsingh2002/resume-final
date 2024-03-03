@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.btn-primary {
+  align-items: center;
+  background-color: "radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)";
+  font-size: 16px;
+  color: white;
+}
