@@ -8,7 +8,7 @@ const Confirm = ({ formValues, setFormValues }) => {
       const handlePrint =useReactToPrint({
             content: ()=>componentRef.current,
             documentTitle: 'Resume',
-            onAfterPrint: ()=>alert("Print Success")
+      
       })
   return (
 <>
