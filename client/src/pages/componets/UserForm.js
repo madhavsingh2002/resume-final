@@ -11,7 +11,9 @@ import FormSkillsDetails from "./FormSkillsDetails";
 import axios from "axios";
 const UserForm = () => {
   // styles hook
-  const [openMessage, setOpenMessage] = useState(false); // error message open state
+  const [openMessage, setOpenMessage] = useState(false); 
+  const [openValid,setOpenValid]=useState(false);
+  // error message open state
   // form state - step + values.
   const [formValues, setFormValues] = useState({
     step: 1,
@@ -65,22 +67,17 @@ const UserForm = () => {
 
   // proceed to next step
   const nextStep = () => {
-    const { step, firstName, lastName, email, number, college, school } =
+    const { step, firstName, lastName, email, number, } =
       formValues;
     // input validation if empty (step 1 & 2)
     if (step === 1) {
-      if (firstName === "" || lastName === "" || email === "" || number === "")
+      if (firstName === "" || lastName === "" || email === "" || number === ""  )
         return setOpenMessage(true);
+      if(number.length < 12){
+        return setOpenValid(true);
+      }
     }
-    if (step === 2) {
-      if (college === "" || school === "") return setOpenMessage(true);
-    }
-    if (step === 3) {
-      if (college === "" || school === "") return setOpenMessage(true);
-    }
-    if (step === 4) {
-      if (college === "" || school === "") return setOpenMessage(true);
-    }
+  
     // continue if all okay.
     setFormValues((state) => ({ ...state, step: step + 1 }));
   };
@@ -94,31 +91,6 @@ const UserForm = () => {
   const submitHandle = () => {
     const { step, /* other form values */ } = formValues;
     setFormValues((state) => ({ ...state, step: step + 1 }));
-
-    // Assuming you have the formData object containing your form data
-
-    // Make a POST request to create-pdf endpoint
-    /* 
-    axios.post("http://localhost:4000/create-pdf", formValues)
-      .then(() => {
-        // After successful PDF creation, make a GET request to fetch-pdf endpoint
-        return axios.get("http://localhost:4000/fetch-pdf", { responseType: "blob" });
-      })
-      .then((res) => {
-        // Create a Blob object from the response data
-        const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-        
-        // Check if the response status is 200 and set the success state accordingly
-        // setSuccess(res.status === 200);
-
-        // Save the Blob as a PDF file
-        // saveAs(pdfBlob, "Resume.pdf");
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error("Error creating or fetching PDF:", error);
-      });
-      */
 };
 
 
@@ -197,6 +169,12 @@ const UserForm = () => {
           onClose={handleClose}
           autoHideDuration={3000}
           message="Please fill the form"
+        />
+        <Snackbar
+          open={openValid}
+          onClose={setOpenValid}
+          autoHideDuration={3000}
+          message="Number should be Valid"
         />
       </Grid>
     </>

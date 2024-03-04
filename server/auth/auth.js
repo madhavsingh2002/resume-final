@@ -30,7 +30,9 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const lowercaseEmail = email.toLowerCase(); // Convert email to lowercase
+
+    const existingUser = await User.findOne({ email: lowercaseEmail });
     console.log(existingUser);
     if (!existingUser) {
       return res.status(404).json({ message: "User not found" });

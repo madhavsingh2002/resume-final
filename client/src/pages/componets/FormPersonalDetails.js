@@ -1,168 +1,251 @@
-import { Grid, TextField, Typography } from  "@mui/material";
+import {
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  InputLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useState } from "react";
+const FormPersonalDetails = ({ formValues, setFormValues }) => {
+  const [collegeFromYearOnGoing, setCollegeFromYearOnGoing] = useState(false);
+  const [schoolFromYearOnGoing, setSchoolFromYearOnGoing] = useState(false);
 
-const FormPersonalDetails = ({  formValues, setFormValues  }) => {
+  const clearCollegeFields = () => {
+    if (collegeFromYearOnGoing) {
+      setFormValues({
+        ...formValues,
+       
+        collegetoyear1: "",
+      });
+    }
+  };
 
+  const clearSchoolFields = () => {
+    if (schoolFromYearOnGoing) {
+      setFormValues({
+        ...formValues,
+      
+        schooltoyear2: "",
+      });
+    }
+  };
+  console.log(formValues.collegefromyear1);
   return (
-        <div>
-      <Typography variant="h6" style={{textAlign:'center'}}>Education Information</Typography>
-            <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="college"
-                  label="College/Unviersity"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.college}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, college: e.target.value });
-                  }}
-                />
-              </Grid>
-              <Grid item md={4} sm={6} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="collegefromyear1"
+    <div>
+      <Typography variant="h6" style={{ textAlign: "center" }}>
+        Education Information
+      </Typography>
+      <Grid container spacing={2} alignItems="center" lg={12}>
+        <Grid item md={4} sm={12} xs={12} lg={4}>
+          <TextField
+            margin="dense"
+            variant="outlined"
+            name="college"
+            label="College/University"
+            style={{ width: "80%" }}
+            value={formValues.college}
+            onChange={(e) => {
+              setFormValues({ ...formValues, college: e.target.value });
+            }}
+          />
+        </Grid>
+        <Grid item md={4} sm={6} xs={12} lg={4}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                name="collegefromyear1"
+                label="From Year"
+                autoFocus={false}
+                value={formValues.collegefromyear1}
+                onChange={(date) => {
+                  setFormValues({
+                    ...formValues,
+                    collegefromyear1: date,
+                  });
+                  console.log(date);
+                }}
+                
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+         
+        </Grid>
+
+        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                name="collegetoyear1"
+                type="date"
+                label="To Year"
+                value={formValues.collegetoyear1}
+                onChange={(date) => {
+                  setFormValues({ ...formValues, collegetoyear1: date });
+                }}
+                disabled={collegeFromYearOnGoing}
+              
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <FormControlLabel
+            control={
+              <Checkbox
+                name="collegeFromYearOnGoing"
+                color="primary"
+                checked={collegeFromYearOnGoing}
+                onChange={(e) => {
+                  setCollegeFromYearOnGoing(e.target.checked)
+                }}
+              />
+            }
+            label="On-going"
+          />
+        </Grid>
+        
+
+        <Grid item md={4} sm={12} xs={12} lg={4}>
+          <TextField
+            margin="dense"
+            label="Qualification"
+            variant="outlined"
+            style={{ width: "80%" }}
+            name="collegequalification1"
+            value={formValues.collegequalification1}
+            onChange={(e) => {
+              setFormValues({
+                ...formValues,
+                collegequalification1: e.target.value,
+              });
+            }}
+          />
+        </Grid>
+
+        <Grid item md={8} sm={12} xs={12} lg={8}>
+          <TextField
+            margin="dense"
+            label="Description"
+            variant="outlined"
+            style={{ width: "90%" }}
+            name="collegedescription1"
+            value={formValues.collegedescription1}
+            onChange={(e) => {
+              setFormValues({
+                ...formValues,
+                collegedescription1: e.target.value,
+              });
+            }}
+          />
+        </Grid>
+      </Grid>
+      <br />
+
+      <br />
+      <Grid container spacing={2} alignItems="center" lg={12}>
+        <Grid item md={4} sm={12} xs={12} lg={4}>
+          <TextField
+            margin="dense"
+            variant="outlined"
+            name="school"
+            label="School"
+            style={{ width: "80%" }}
+            value={formValues.school}
+            onChange={(e) => {
+              setFormValues({ ...formValues, school: e.target.value });
+            }}
+          />
+        </Grid>
+        <Grid item md={4} sm={6} xs={12} lg={4} >
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                name="schoolfromyear2"
+                type="date"
+                label="From Year"
+                value={formValues.schoolfromyear2}
+                onChange={(date) => {
+                  setFormValues({
+                    ...formValues,
+                    schoolfromyear2: date,
+                  });
+                  console.log(date);
+                }}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          
+        </Grid>
+
+        <Grid item md={4} sm={6} xs={12} lg={4} sx={{mt:"44px"}}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                name="schooltoyear2"
+                type="date"
+                label="To Year"
+                value={formValues.schooltoyear2}
+                onChange={(date) => {
+                  setFormValues({
+                    ...formValues,
+                    schooltoyear2: date,
+                  });
                   
-                  type="date"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.collegefromyear1}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, collegefromyear1: e.target.value });
-                  }}
-                />
-              </Grid>
+                }}
+                disabled={schoolFromYearOnGoing}
+                  onClick={clearSchoolFields}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+          <FormControlLabel
+            control={<Checkbox
+              name="schoolFromYearOnGoing"
+              color="primary"
+              checked={schoolFromYearOnGoing}
+              onChange={(e) => setSchoolFromYearOnGoing(e.target.checked)}
+            />}
+            label="On-going"
+          />
+        </Grid>
 
-              <Grid item md={4} sm={6} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="collegetoyear1"
-                  type="date"
-                  // label="To Year"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.collegetoyear1}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, collegetoyear1: e.target.value });
-                  }}
-                />
-              </Grid>
+        <Grid item md={4} sm={12} xs={12} lg={4}>
+          <TextField
+            margin="dense"
+            label="Qualification"
+            variant="outlined"
+            style={{ width: "80%" }}
+            name="schoolqualification2"
+            value={formValues.schoolqualification2}
+            onChange={(e) => {
+              setFormValues({
+                ...formValues,
+                schoolqualification2: e.target.value,
+              });
+            }}
+          />
+        </Grid>
 
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  label="Qualification"
-                  variant="outlined"
-                  style={{ width: "80%" }}
-                  name="collegequalification1"
-                  required
-                  value={formValues.collegequalification1}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, collegequalification1: e.target.value });
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={8} sm={12} xs={12} lg={8}>
-                <TextField
-                  margin="dense"
-                  label="Description"
-                  variant="outlined"
-                  style={{ width: "90%" }}
-                  name="collegedescription1"
-                  required
-                  value={formValues.collegedescription1}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, collegedescription1: e.target.value });
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <br />
-            
-            <br />
-            <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="school"
-                  label="School"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.school}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, school: e.target.value });
-                  }}
-                />
-              </Grid>
-              <Grid item md={4} sm={6} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="schoolfromyear2"
-                  // label="From Year"
-                  type="date"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.schoolfromyear2}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, schoolfromyear2: e.target.value });
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={4} sm={6} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="schooltoyear2"
-                  // label="To Year"
-                  type="date"
-                  style={{ width: "80%" }}
-                  required
-                  value={formValues.schooltoyear2}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, schooltoyear2: e.target.value });
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  label="Qualification"
-                  variant="outlined"
-                  style={{ width: "80%" }}
-                  name="schoolqualification2"
-                  required
-                  value={formValues.schoolqualification2}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, schoolqualification2: e.target.value });
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={8} sm={8} xs={8} lg={8}>
-                <TextField
-                  margin="dense"
-                  label="Description"
-                  variant="outlined"
-                  style={{ width: "90%" }}
-                  name="schooldescription2"
-                  required
-                  value={formValues.schooldescription2}
-                  onChange={(e) => {
-                    setFormValues({ ...formValues, schooldescription2: e.target.value });
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </div>
+        <Grid item md={8} sm={8} xs={8} lg={8}>
+          <TextField
+            margin="dense"
+            label="Description"
+            variant="outlined"
+            style={{ width: "90%" }}
+            name="schooldescription2"
+            value={formValues.schooldescription2}
+            onChange={(e) => {
+              setFormValues({
+                ...formValues,
+                schooldescription2: e.target.value,
+              });
+            }}
+          />
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 

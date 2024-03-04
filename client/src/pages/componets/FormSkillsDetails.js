@@ -16,7 +16,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "80%" }}
                   name="skill1"
-                  required
+                  
                   value={formValues.skill1}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skill1: e.target.value });
@@ -31,7 +31,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "90%" }}
                   name="skilldescription1"
-                  required
+                  
                   value={formValues.skilldescription1}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skilldescription1: e.target.value });
@@ -50,7 +50,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "80%" }}
                   name="skill2"
-                  required
+                  
                   value={formValues.skill2}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skill2: e.target.value });
@@ -65,7 +65,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "90%" }}
                   name="description1"
-                  required
+                  
                   value={formValues.skilldescription2}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skilldescription2: e.target.value });
@@ -83,7 +83,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "80%" }}
                   name="skill3"
-                  required
+                  
                   value={formValues.skill3}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skill3: e.target.value });
@@ -98,7 +98,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "90%" }}
                   name="description1"
-                  required
+                  
                   value={formValues.skilldescription3}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skilldescription3: e.target.value });
@@ -116,7 +116,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "80%" }}
                   name="skill 4"
-                  required
+                  
                   value={formValues.skill4}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skill4: e.target.value });
@@ -131,7 +131,7 @@ const FormSkillsDetails = ({  formValues, setFormValues }) => {
                   variant="outlined"
                   style={{ width: "90%" }}
                   name="description1"
-                  required
+                  
                   value={formValues.skilldescription4}
                   onChange={(e) => {
                     setFormValues({ ...formValues, skilldescription4: e.target.value });

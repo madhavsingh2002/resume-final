@@ -31,7 +31,7 @@ function Register() {
       });
       if(res.status==201){
         swal({
-          text: "Successfully Login.",
+          text: "Successfully Registered.",
           icon: "success",
           button: "Ok",
         });
