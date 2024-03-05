@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
-
+import dayjs from "dayjs";
 const FormProjectsDetails = ({ formValues, setFormValues }) => {
   const [project1OnGoing, setproject1OnGoing] = useState(false);
   const [project2OnGoing, setproject2OnGoing] = useState(false);
@@ -65,9 +65,9 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="From Year"
-                value={formValues.project1fromyear1}
+                value={dayjs(formValues.project1fromyear1)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     project1fromyear1: formattedDate,
@@ -87,9 +87,9 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 name="project1toyear1"
                 type="date"
                 label="To Year"
-                value={formValues.project1toyear1}
+                value={dayjs(formValues.project1toyear1)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     project1toyear1: formattedDate,
@@ -173,9 +173,9 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="From Year"
-                value={formValues.project2fromyear2}
+                value={dayjs(formValues.project2fromyear2)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     project2fromyear2: formattedDate,
@@ -196,9 +196,9 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="To Year"
-                value={formValues.project2toyear2}
+                value={dayjs(formValues.project2toyear2)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     project2toyear2: formattedDate,

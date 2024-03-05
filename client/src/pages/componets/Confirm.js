@@ -100,7 +100,7 @@ const Confirm = ({ formValues, setFormValues }) => {
               style={{
                 display: "flex",
                 //     border: "1px solid red",
-                justifyContent: "space-around",
+                justifyContent: "flex-start",
               }}
             >
               <div
@@ -116,11 +116,17 @@ const Confirm = ({ formValues, setFormValues }) => {
               </div>
               <div>
                 <p className="lead">
-                  <strong>Contact:</strong> (+92){formValues.number}
+                  <strong>Contact:</strong> (+92) {formValues.number}
                 </p>
               </div>
+            
               <br />
             </div>
+            <div style={{textAlign:"start",paddingLeft:"2.5rem"}}>
+                <p className="lead">
+                  <strong>Address:</strong> (+92){formValues.address}
+                </p>
+              </div>
             <div
               style={{
                 display: "flex",

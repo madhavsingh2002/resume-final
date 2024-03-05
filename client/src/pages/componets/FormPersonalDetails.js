@@ -11,6 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
+import dayjs from "dayjs";
 const FormPersonalDetails = ({ formValues, setFormValues }) => {
   const [collegeFromYearOnGoing, setCollegeFromYearOnGoing] = useState(false);
   const [schoolFromYearOnGoing, setSchoolFromYearOnGoing] = useState(false);
@@ -22,7 +23,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
     if (checked) {
       setFormValues({
         ...formValues,
-        collegetoyear1: 'present',
+        collegetoyear1: "present",
       });
     }
   };
@@ -34,7 +35,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
     if (checked) {
       setFormValues({
         ...formValues,
-        schooltoyear2: 'present',
+        schooltoyear2: "present",
       });
     }
   };
@@ -61,27 +62,31 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
         <Grid item md={4} sm={6} xs={12} lg={4}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
-           
               <DatePicker
                 name="collegefromyear1"
                 label="From Year"
-                
                 // view=""
-                value={formValues.collegefromyear1}
+                // value={formValues.collegefromyear1}
+                // onChange={(date) => {
+                //   const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                //   setFormValues({
+                //     ...formValues,
+                //     collegefromyear1: formattedDate,
+                //   });
+                //   console.log(date);
+                // }}
+                value={dayjs(formValues.collegefromyear1)} // Convert to Dayjs object
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY"); // Format the date
                   setFormValues({
                     ...formValues,
                     collegefromyear1: formattedDate,
                   });
-                  console.log(date);
                 }}
                 disableFuture={true}
               />
-            
             </DemoContainer>
           </LocalizationProvider>
-         
         </Grid>
 
         <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
@@ -91,12 +96,15 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 name="collegetoyear1"
                 type="date"
                 label="To Year"
-                value={formValues.collegetoyear1}
+                value={dayjs(formValues.collegetoyear1)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
-                  setFormValues({ ...formValues, collegetoyear1: formattedDate });
+                  const formattedDate = date.format("DD-MM-YYYY");
+                  setFormValues({
+                    ...formValues,
+                    collegetoyear1: formattedDate,
+                  });
                 }}
-                // maxDate={new Date()} 
+                // maxDate={new Date()}
                 disabled={collegeFromYearOnGoing}
                 disableFuture={true}
               />
@@ -114,7 +122,6 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             label="On-going"
           />
         </Grid>
-        
 
         <Grid item md={4} sm={12} xs={12} lg={4}>
           <TextField
@@ -125,7 +132,6 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             name="collegequalification1"
             value={formValues.collegequalification1}
             onChange={(e) => {
-              
               setFormValues({
                 ...formValues,
                 collegequalification1: e.target.value,
@@ -141,6 +147,9 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             variant="outlined"
             style={{ width: "90%" }}
             name="collegedescription1"
+            inputProps={{
+              maxLength: 100,
+            }}
             value={formValues.collegedescription1}
             onChange={(e) => {
               setFormValues({
@@ -168,16 +177,16 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             }}
           />
         </Grid>
-        <Grid item md={4} sm={6} xs={12} lg={4} >
+        <Grid item md={4} sm={6} xs={12} lg={4}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="schoolfromyear2"
                 type="date"
                 label="From Year"
-                value={formValues.schoolfromyear2}
+                value={dayjs(formValues.schoolfromyear2)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     schoolfromyear2: formattedDate,
@@ -188,38 +197,37 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
               />
             </DemoContainer>
           </LocalizationProvider>
-          
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4} sx={{mt:"44px"}}>
+        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="schooltoyear2"
                 type="date"
                 label="To Year"
-                value={formValues.schooltoyear2}
+                value={dayjs(formValues.schooltoyear2)}
                 onChange={(date) => {
-                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  const formattedDate = date.format("DD-MM-YYYY");
                   setFormValues({
                     ...formValues,
                     schooltoyear2: formattedDate,
                   });
-                  
                 }}
                 disableFuture={true}
                 disabled={schoolFromYearOnGoing}
-                  
               />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
-            control={<Checkbox
-              name="schoolFromYearOnGoing"
-              color="primary"
-              checked={schoolFromYearOnGoing}
-              onChange={handleSchoolCheckboxChange}
-            />}
+            control={
+              <Checkbox
+                name="schoolFromYearOnGoing"
+                color="primary"
+                checked={schoolFromYearOnGoing}
+                onChange={handleSchoolCheckboxChange}
+              />
+            }
             label="On-going"
           />
         </Grid>

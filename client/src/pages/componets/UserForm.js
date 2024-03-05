@@ -73,7 +73,7 @@ const UserForm = () => {
     if (step === 1) {
       if (firstName === "" || lastName === "" || email === "" || number === ""  )
         return setOpenMessage(true);
-      if(number.length < 12){
+      if(number.length >12){
         return setOpenValid(true);
       }
     }
