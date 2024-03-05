@@ -22,7 +22,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
     if (checked) {
       setFormValues({
         ...formValues,
-        collegetoyear1: 'ongoing',
+        collegetoyear1: 'present',
       });
     }
   };
@@ -34,7 +34,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
     if (checked) {
       setFormValues({
         ...formValues,
-        schooltoyear2: 'ongoing',
+        schooltoyear2: 'present',
       });
     }
   };
@@ -69,13 +69,14 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 // view=""
                 value={formValues.collegefromyear1}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    collegefromyear1: date,
+                    collegefromyear1: formattedDate,
                   });
                   console.log(date);
                 }}
-                
+                disableFuture={true}
               />
             
             </DemoContainer>
@@ -92,10 +93,12 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 label="To Year"
                 value={formValues.collegetoyear1}
                 onChange={(date) => {
-                  setFormValues({ ...formValues, collegetoyear1: date });
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
+                  setFormValues({ ...formValues, collegetoyear1: formattedDate });
                 }}
+                // maxDate={new Date()} 
                 disabled={collegeFromYearOnGoing}
-              
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -122,6 +125,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             name="collegequalification1"
             value={formValues.collegequalification1}
             onChange={(e) => {
+              
               setFormValues({
                 ...formValues,
                 collegequalification1: e.target.value,
@@ -173,12 +177,14 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 label="From Year"
                 value={formValues.schoolfromyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    schoolfromyear2: date,
+                    schoolfromyear2: formattedDate,
                   });
                   console.log(date);
                 }}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -194,12 +200,14 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 label="To Year"
                 value={formValues.schooltoyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    schooltoyear2: date,
+                    schooltoyear2: formattedDate,
                   });
                   
                 }}
+                disableFuture={true}
                 disabled={schoolFromYearOnGoing}
                   
               />

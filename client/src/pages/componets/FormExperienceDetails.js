@@ -1,29 +1,38 @@
-import { Checkbox, FormControlLabel, Grid, TextField, Typography } from "@mui/material";
+import {
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 const FormExperienceDetails = ({ formValues, setFormValues }) => {
-  const [company1YearOnGoing, setCollegeFromYearOnGoing] = useState(false);
-  const [company2YearOnGoing, setSchoolFromYearOnGoing] = useState(false);
+  const [company1YearOnGoing, setCompany1YearOnGoing] = useState(false);
+  const [company2YearOnGoing, setCompany2YearOnGoing] = useState(false);
+  const handleCompany1CheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setCompany1YearOnGoing(checked);
 
-  const clearCompany1Fields = () => {
-    if (company1YearOnGoing) {
+    if (checked) {
       setFormValues({
         ...formValues,
-       
-        company1toyear1: "",
+        company1toyear1: "present",
       });
     }
   };
 
-  const clearCompany2Fields = () => {
-    if (company2YearOnGoing) {
+  const handleCompany2CheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setCompany2YearOnGoing(checked);
+
+    if (checked) {
       setFormValues({
         ...formValues,
-      
-        company2toyear2: "",
+        company2toyear2: "present",
       });
     }
   };
@@ -47,21 +56,23 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
         <Grid item md={4} sm={6} xs={12} lg={4}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company1fromyear1"
                 type="date"
-                
                 label="From Year"
                 value={formValues.company1fromyear1}
                 onChange={(date) => {
+                  console.log(date.d);
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`;
                   setFormValues({
                     ...formValues,
-                    company1fromyear1: date,
+                    company1fromyear1: formattedDate,
                   });
-                  console.log(date);
+                  console.log(formattedDate);
                 }}
+                disableFuture={true}
                 renderInput={(params) => (
                   <TextField {...params} autoFocus={false} />
                 )}
@@ -70,8 +81,8 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4}  sx={{mt:"44px"}}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company1toyear1"
@@ -80,18 +91,27 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 label="To Year"
                 value={formValues.company1toyear1}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    company1toyear1: date,
+                    company1toyear1: formattedDate,
                   });
                   console.log(date);
                 }}
-                focu={false}
+                disabled={company1YearOnGoing}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
-            control={<Checkbox name="collegeFromYearOnGoing" color="primary" />}
+            control={
+              <Checkbox
+                name="company1YearOnGoing"
+                color="primary"
+                checked={company1YearOnGoing}
+                onChange={handleCompany1CheckboxChange}
+              />
+            }
             label="On-going"
           />
         </Grid>
@@ -148,7 +168,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
         <Grid item md={4} sm={6} xs={12} lg={4}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company2fromyear2"
@@ -157,20 +177,21 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 label="From Year"
                 value={formValues.company2fromyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}` 
                   setFormValues({
                     ...formValues,
-                    company2fromyear2: date,
+                    company2fromyear2: formattedDate,
                   });
                   console.log(date);
                 }}
-                focu={false}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4}  sx={{mt:"44px"}}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company2toyear2"
@@ -179,18 +200,27 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 label="From Year"
                 value={formValues.company2toyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    company2toyear2: date,
+                    company2toyear2: formattedDate,
                   });
                   console.log(date);
                 }}
-                focu={false}
+                disabled={company2YearOnGoing}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
-            control={<Checkbox name="collegeFromYearOnGoing" color="primary" />}
+            control={
+              <Checkbox
+                name="company2YearOnGoing"
+                color="primary"
+                checked={company2YearOnGoing}
+                onChange={handleCompany2CheckboxChange}
+              />
+            }
             label="On-going"
           />
         </Grid>

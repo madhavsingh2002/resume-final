@@ -9,8 +9,35 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useState } from "react";
 
 const FormProjectsDetails = ({ formValues, setFormValues }) => {
+  const [project1OnGoing, setproject1OnGoing] = useState(false);
+  const [project2OnGoing, setproject2OnGoing] = useState(false);
+
+  const handleProject1CheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setproject1OnGoing(checked);
+
+    if (checked) {
+      setFormValues({
+        ...formValues,
+        project1toyear1: 'present',
+      });
+    }
+  };
+
+  const handleProject2CheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setproject2OnGoing(checked);
+
+    if (checked) {
+      setFormValues({
+        ...formValues,
+        project2toyear2: 'present',
+      });
+    }
+  };
   return (
     <div>
       <Typography variant="h6" style={{ textAlign: "center" }}>
@@ -40,12 +67,14 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 label="From Year"
                 value={formValues.project1fromyear1}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    project1fromyear1: date,
+                    project1fromyear1: formattedDate,
                   });
                   console.log(date);
                 }}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -57,21 +86,30 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
               <DatePicker
                 name="project1toyear1"
                 type="date"
-                autoFocus={false}
                 label="To Year"
                 value={formValues.project1toyear1}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    project1toyear1: date,
+                    project1toyear1: formattedDate,
                   });
-                  console.log(date);
+                 
                 }}
+                disableFuture={true}
+                disabled={project1OnGoing}
               />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
-            control={<Checkbox name="collegeFromYearOnGoing" color="primary" />}
+            control={
+              <Checkbox
+                name="project1OnGoing"
+                color="primary"
+                checked={project1OnGoing}
+                onChange={handleProject1CheckboxChange}
+              />
+            }
             label="On-going"
           />
         </Grid>
@@ -131,18 +169,20 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
-                name="project2fromyear1"
+                name="project2fromyear2"
                 type="date"
                 
                 label="From Year"
-                value={formValues.project2fromyear1}
+                value={formValues.project2fromyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    project2fromyear1: date,
+                    project2fromyear2: formattedDate,
                   });
-                  console.log(date);
+                 
                 }}
+                disableFuture={true}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -158,17 +198,25 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 label="To Year"
                 value={formValues.project2toyear2}
                 onChange={(date) => {
+                  const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
                   setFormValues({
                     ...formValues,
-                    project2toyear2: date,
+                    project2toyear2: formattedDate,
                   });
-                  console.log(date);
+                 
                 }}
+                disableFuture={true}
+                disabled={project2OnGoing}
               />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
-            control={<Checkbox name="collegeFromYearOnGoing" color="primary" />}
+            control={<Checkbox
+              name="project2OnGoing"
+              color="primary"
+              checked={project2OnGoing}
+              onChange={handleProject2CheckboxChange}
+            />}
             label="On-going"
           />
         </Grid>
