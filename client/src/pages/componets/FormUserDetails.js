@@ -69,7 +69,14 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 onChange={(e) => {
                   setFormValues({ ...formValues, email: e.target.value });
                 }}
+                
               />
+              {formValues.email.length > 0 &&
+                !/^\S+@\S+\.\S+$/.test(formValues.email) && (
+                  <Alert severity="error" sx={{ mt: 1 }}>
+                    Please enter a valid email address.
+                  </Alert>
+                )}
             </Grid>
             <Grid item sx={{ mt: 3, width: 300 }}>
               <TextField
@@ -128,7 +135,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 value={formValues.number}
                 onChange={(e) => {
                   const inputValue = e.target.value;
-                  if (inputValue.length <= 12 && /^[0-9]*$/.test(inputValue)) {
+                  if (inputValue.length < 13 && /^[0-9]*$/.test(inputValue)) {
                     setFormValues({ ...formValues, number: inputValue });
                   }
                 }}

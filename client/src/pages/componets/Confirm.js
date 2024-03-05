@@ -122,9 +122,9 @@ const Confirm = ({ formValues, setFormValues }) => {
             
               <br />
             </div>
-            <div style={{textAlign:"start",paddingLeft:"2.5rem"}}>
+            <div style={{textAlign:"start",paddingLeft:"5rem"}}>
                 <p className="lead">
-                  <strong>Address:</strong> (+92){formValues.address}
+                  <strong>Address:</strong> {formValues.address}
                 </p>
               </div>
             <div
@@ -247,7 +247,9 @@ const Confirm = ({ formValues, setFormValues }) => {
             {formValues.company2designation}{" "}
              {formValues.company2fromyear2} - {formValues.company2toyear2} 
           </p>
-          <p className="mt-0">{formValues.companydescription2}</p>
+          {formValues.companydescription2
+           &&(
+          <p className="mt-0">{formValues.companydescription2}</p>)}
         </div>
 )}
        {!allProjectEmpty && (

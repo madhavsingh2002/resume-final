@@ -13,6 +13,7 @@ const UserForm = () => {
   // styles hook
   const [openMessage, setOpenMessage] = useState(false); 
   const [openValid,setOpenValid]=useState(false);
+  const [openValidEmail,setOpenValidEmail]=useState(false);
   // error message open state
   // form state - step + values.
   const [formValues, setFormValues] = useState({
@@ -73,9 +74,13 @@ const UserForm = () => {
     if (step === 1) {
       if (firstName === "" || lastName === "" || email === "" || number === ""  )
         return setOpenMessage(true);
-      if(number.length >12){
+      if(number.length <10){
         return setOpenValid(true);
       }
+      if(email.length > 0 &&
+        !/^\S+@\S+\.\S+$/.test(email)){
+          return setOpenValidEmail(true);
+        }
     }
   
     // continue if all okay.
@@ -175,6 +180,12 @@ const UserForm = () => {
           onClose={setOpenValid}
           autoHideDuration={3000}
           message="Number should be Valid"
+        />
+         <Snackbar
+          open={openValidEmail}
+          onClose={setOpenValidEmail}
+          autoHideDuration={3000}
+          message="Email should be Valid"
         />
       </Grid>
     </>

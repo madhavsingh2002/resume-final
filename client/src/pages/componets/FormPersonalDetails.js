@@ -65,16 +65,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
               <DatePicker
                 name="collegefromyear1"
                 label="From Year"
-                // view=""
-                // value={formValues.collegefromyear1}
-                // onChange={(date) => {
-                //   const formattedDate = `${date.format('MMM')} ${date.date()} ${date.year()}`
-                //   setFormValues({
-                //     ...formValues,
-                //     collegefromyear1: formattedDate,
-                //   });
-                //   console.log(date);
-                // }}
+                
                 value={dayjs(formValues.collegefromyear1)} // Convert to Dayjs object
                 onChange={(date) => {
                   const formattedDate = date.format("DD-MM-YYYY"); // Format the date
