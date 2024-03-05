@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -15,22 +15,26 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
   const [collegeFromYearOnGoing, setCollegeFromYearOnGoing] = useState(false);
   const [schoolFromYearOnGoing, setSchoolFromYearOnGoing] = useState(false);
 
-  const clearCollegeFields = () => {
-    if (collegeFromYearOnGoing) {
+  const handleCollegeCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setCollegeFromYearOnGoing(checked);
+
+    if (checked) {
       setFormValues({
         ...formValues,
-       
-        collegetoyear1: "",
+        collegetoyear1: 'ongoing',
       });
     }
   };
 
-  const clearSchoolFields = () => {
-    if (schoolFromYearOnGoing) {
+  const handleSchoolCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setSchoolFromYearOnGoing(checked);
+
+    if (checked) {
       setFormValues({
         ...formValues,
-      
-        schooltoyear2: "",
+        schooltoyear2: 'ongoing',
       });
     }
   };
@@ -57,10 +61,12 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
         <Grid item md={4} sm={6} xs={12} lg={4}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
+           
               <DatePicker
                 name="collegefromyear1"
                 label="From Year"
-                autoFocus={false}
+                
+                // view=""
                 value={formValues.collegefromyear1}
                 onChange={(date) => {
                   setFormValues({
@@ -71,6 +77,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 }}
                 
               />
+            
             </DemoContainer>
           </LocalizationProvider>
          
@@ -98,9 +105,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 name="collegeFromYearOnGoing"
                 color="primary"
                 checked={collegeFromYearOnGoing}
-                onChange={(e) => {
-                  setCollegeFromYearOnGoing(e.target.checked)
-                }}
+                onChange={handleCollegeCheckboxChange}
               />
             }
             label="On-going"
@@ -196,7 +201,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                   
                 }}
                 disabled={schoolFromYearOnGoing}
-                  onClick={clearSchoolFields}
+                  
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -205,7 +210,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
               name="schoolFromYearOnGoing"
               color="primary"
               checked={schoolFromYearOnGoing}
-              onChange={(e) => setSchoolFromYearOnGoing(e.target.checked)}
+              onChange={handleSchoolCheckboxChange}
             />}
             label="On-going"
           />
