@@ -46,26 +46,29 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
         Education Information
       </Typography>
       <Grid container spacing={2} alignItems="center" lg={12}>
-        <Grid item md={4} sm={12} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4} >
           <TextField
             margin="dense"
             variant="outlined"
             name="college"
             label="College/University"
-            style={{ width: "80%" }}
+            style={{width:"100%"}}
             value={formValues.college}
             onChange={(e) => {
               setFormValues({ ...formValues, college: e.target.value });
             }}
           />
         </Grid>
-        <Grid item md={4} sm={6} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4} >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DatePicker"]}>
+            <DemoContainer components={["DatePicker"]}  >
+              
               <DatePicker
                 name="collegefromyear1"
                 label="From Year"
                 autoFocus={false}
+                
+                sx={{width:"100%"}}
                 value={formValues.collegefromyear1 ? dayjs(formValues.collegefromyear1) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY"); // Format the date
@@ -80,14 +83,14 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+        <Grid item md={12} sm={12} xs={12} lg={4} sx={{mt:{xs: 0,sm: 0,md: 0,lg: "44px", }}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="collegetoyear1"
                 type="date"
                 label="To Year"
-                
+                sx={{width:"100%"}}
                 value={formValues.collegetoyear1 === 'present' ? null : formValues.collegetoyear1 ? dayjs(formValues.collegetoyear1) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -120,7 +123,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Qualification"
             variant="outlined"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             name="collegequalification1"
             value={formValues.collegequalification1}
             onChange={(e) => {
@@ -137,7 +140,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Description"
             variant="outlined"
-            style={{ width: "90%" }}
+            style={{ width: "100%" }}
             name="collegedescription1"
             inputProps={{
               maxLength: 100,
@@ -152,30 +155,29 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
       </Grid>
-      <br />
-
-      <br />
+      
       <Grid container spacing={2} alignItems="center" lg={12}>
-        <Grid item md={4} sm={12} xs={12} lg={4}>
+      <Grid item md={12} sm={12} xs={12} lg={4} >
           <TextField
             margin="dense"
             variant="outlined"
             name="school"
             label="School"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             value={formValues.school}
             onChange={(e) => {
               setFormValues({ ...formValues, school: e.target.value });
             }}
           />
         </Grid>
-        <Grid item md={4} sm={6} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4} >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="schoolfromyear2"
                 type="date"
                 label="From Year"
+                sx={{ width: "100%" }}
                 value={formValues.schoolfromyear2 ? dayjs(formValues.schoolfromyear2) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -191,13 +193,14 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+        <Grid item md={12} sm={12} xs={12} lg={4} sx={{mt:{xs: 0,sm: 0,md: 0,lg: "44px", }}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="schooltoyear2"
                 type="date"
                 label="To Year"
+                sx={{width:"100%"}}
                 value={formValues.schooltoyear2 === 'present' ? null : formValues.schooltoyear2 ? dayjs(formValues.schooltoyear2) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -229,7 +232,7 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Qualification"
             variant="outlined"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             name="schoolqualification2"
             value={formValues.schoolqualification2}
             onChange={(e) => {
@@ -241,12 +244,12 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
 
-        <Grid item md={8} sm={8} xs={8} lg={8}>
+        <Grid item md={8} sm={12} xs={12} lg={8}>
           <TextField
             margin="dense"
             label="Description"
             variant="outlined"
-            style={{ width: "90%" }}
+            style={{ width: "100%" }}
             name="schooldescription2"
             value={formValues.schooldescription2}
             onChange={(e) => {

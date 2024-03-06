@@ -3,20 +3,7 @@ import { useState } from "react";
 
 const FormUserDetails = ({ formValues, setFormValues }) => {
   console.log(formValues);
-  const [error, setError] = useState("");
-
-  const handleNumberChange = (e) => {
-    let value = e.target.value;
-    value = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-    if (value.length > 12) {
-      value = value.slice(0, 12); // Limit length to 12 characters
-    }
-    setFormValues({ ...formValues, number: value });
-  };
-
-  const handleScroll = (e) => {
-    e.preventDefault();
-  };
+  
 
   return (
     <>
@@ -27,17 +14,17 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
         container
         justifyContent="center"
         alignItems="center"
-        style={{ width: "100%" }}
+        spacing={3} // Adjust spacing between items
       >
         {/* First container */}
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}> {/* Use half of the width on small screens, full width on medium screens and up */}
           <Grid
             container
             direction="column"
             justifyContent="center"
             alignItems="center"
           >
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}> {/* Make each item full width */}
               <TextField
                 label="First Name"
                 name="firstName"
@@ -48,7 +35,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 }}
               />
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 label="Last Name"
                 name="lastName"
@@ -59,7 +46,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 }}
               />
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 type="email"
                 label="Email"
@@ -69,7 +56,6 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 onChange={(e) => {
                   setFormValues({ ...formValues, email: e.target.value });
                 }}
-                
               />
               {formValues.email.length > 0 &&
                 !/^\S+@\S+\.\S+$/.test(formValues.email) && (
@@ -78,7 +64,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                   </Alert>
                 )}
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 label="Address (Optional)"
                 name="address"
@@ -93,14 +79,14 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
         </Grid>
 
         {/* Second container */}
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}> {/* Use half of the width on small screens, full width on medium screens and up */}
           <Grid
             container
             direction="column"
             justifyContent="center"
             alignItems="center"
           >
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 label="Website (Optional)"
                 name="website"
@@ -111,7 +97,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 }}
               />
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 label="Linkedin (Optional)"
                 name="linkedin"
@@ -122,7 +108,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 }}
               />
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 type="text"
                 label="Number"
@@ -150,7 +136,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                   </Alert>
                 )}
             </Grid>
-            <Grid item sx={{ mt: 3, width: 300 }}>
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
               <TextField
                 label="Github (Optional)"
                 name="github"

@@ -1,5 +1,6 @@
 import {
   Button,
+  Grid,
   List,
   ListItem,
   ListItemText,
@@ -51,7 +52,7 @@ const Confirm = ({ formValues, setFormValues }) => {
     !formValues.company2fromyear2 &&
     !formValues.company2toyear2 &&
     !formValues.companydescription2;
-    const allProjectEmpty=
+  const allProjectEmpty =
     !formValues.project1 &&
     !formValues.project1fromyear1 &&
     !formValues.project1toyear1 &&
@@ -62,7 +63,7 @@ const Confirm = ({ formValues, setFormValues }) => {
     !formValues.project2toyear2 &&
     !formValues.project2designation &&
     !formValues.projectdescription2;
-    const allEducationEmpty=
+  const allEducationEmpty =
     !formValues.college &&
     !formValues.collegefromyear1 &&
     !formValues.collegetoyear1 &&
@@ -79,230 +80,296 @@ const Confirm = ({ formValues, setFormValues }) => {
       <div
         ref={reportTemplateRef}
         style={{
-          border: "1px solid #f5f0f0",
+          border: "1px solid #c5c5c5",
           borderRadius: "10px",
           width: "100%",
         }}
       >
-        <div className="row text-center">
-          <div
-            className=" flex"
-            style={{ display: "flex", flexDirection: "column", width: "100%" }}
-          >
-            <div>
-              <h1>
-                <b>
-                  {formValues.firstName} {formValues.lastName}
-                </b>
-              </h1>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                //     border: "1px solid red",
-                justifyContent: "flex-start",
-              }}
-            >
-              <div
-                style={{
-                  // border: "1px solid blue",
-                  width: "50%",
-                  textAlign: "flex-start",
-                }}
-              >
-                <p className="lead email">
-                  <strong>Email:</strong> {formValues.email}
-                </p>
-              </div>
-              <div>
-                <p className="lead">
-                  <strong>Contact:</strong> (+92) {formValues.number}
-                </p>
-              </div>
-            
-              <br />
-            </div>
-            <div style={{textAlign:"start",paddingLeft:"5rem"}}>
-                <p className="lead">
-                  <strong>Address:</strong> {formValues.address}
-                </p>
-              </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                // paddingLeft: "rem",
-                width: "100%",
-              }}
-            >
-              {formValues.website && (
-                <p className="lead mx-5">
-                  <strong>Website:</strong> {formValues.website}
-                </p>
-              )}
-              {formValues.linkedin && (
-                <p className="lead mx-5">
-                  <strong>LinkedIn:</strong> {formValues.linkedin}
-                </p>
-              )}
-              {formValues.github && (
-                <p className="lead">
-                  <strong>Github:</strong> {formValues.github}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
+        {formValues.firstName && (
+          <Grid item xs={12} sm={6} md={4} lg={12} textAlign="center">
+            <Typography variant="h4">
+              {formValues.firstName} {formValues.lastName}
+            </Typography>
+          </Grid>
+        )}
+        <hr />
+        <Grid container spacing={2} lg={12} display="flex" paddingLeft={"5px"}>
+          {formValues.email && (
+            <Grid item xs={12} sm={6} md={6} lg={4}>
+              <Typography variant="body1">
+                <strong>Email:</strong> {formValues.email}
+              </Typography>
+            </Grid>
+          )}
+          {formValues.number && (
+            <Grid item xs={12} sm={6} md={6} lg={4}>
+              <Typography variant="body1">
+                <strong>Number:</strong> {formValues.number}
+              </Typography>
+            </Grid>
+          )}
+          {formValues.address && (
+            <Grid item xs={12} sm={6} md={12} lg={4}>
+              <Typography variant="body1">
+                <strong>Address:</strong> {formValues.address}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
+        <br />
+        <Grid container spacing={2} lg={12} display="flex" paddingLeft={"5px"}>
+          {formValues.website && (
+            <Grid item xs={12} sm={6} md={6} lg={4}>
+              <Typography variant="body1">
+                <strong>Website:</strong> {formValues.website}
+              </Typography>
+            </Grid>
+          )}
+          {formValues.linkedin && (
+            <Grid item xs={12} sm={6} md={6} lg={4}>
+              <Typography variant="body1">
+                <strong>LinkedIn:</strong> {formValues.linkedin}
+              </Typography>
+            </Grid>
+          )}
+          {formValues.github && (
+            <Grid item xs={12} sm={6} md={12} lg={4}>
+              <Typography variant="body1">
+                <strong>Github:</strong> {formValues.github}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
 
         <hr />
+
         {!allSkillsEmpty && (
-          <div className="col-lg-12  bg-light">
-            <h3>
-              <b>Skills</b>
-            </h3>
-          </div>
+          <Grid
+            item
+            lg={12}
+            sx={{ bgcolor: "text.primary", paddingLeft: "5px" }}
+          >
+            <Typography variant="h5" sx={{ color: "white" }}>
+              Skills
+            </Typography>
+          </Grid>
         )}
         {formValues.skill1 && (
-          <div className="col-lg-12 row ">
-            <p className="lead mx-3">
-              <b>{formValues.skill1}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skilldescription1 && (
-          <div className="col-lg-12 row ">
-            <p className="mx-3">
-              <b>{formValues.skilldescription1}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skill2 && (
-          <div className="col-lg-12 row ">
-            <p className="lead mx-3">
-              <b>{formValues.skill2}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skilldescription2 && (
-          <div className="col-lg-12 row ">
-            <p className="mx-3">
-              <b>{formValues.skilldescription2}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skill3 && (
-          <div className="col-lg-12 row ">
-            <p className="lead mx-3">
-              <b>{formValues.skill3}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skilldescription3 && (
-          <div className="col-lg-12 row ">
-            <p className="mx-3">
-              <b>{formValues.skilldescription3}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skill4 && (
-          <div className="col-lg-12 row ">
-            <p className="lead mx-3">
-              <b>{formValues.skill4}</b>
-            </p>
-          </div>
-        )}
-        {formValues.skilldescription4 && (
-          <div className="col-lg-12 row ">
-            <p className="mx-3">
-              <b>{formValues.skilldescription4}</b>
-            </p>
-          </div>
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="h6">
+              <strong>{formValues.skill1}</strong>
+            </Typography>
+          </Grid>
         )}
 
-        {!allExperienceEmpty && (
-          <div className="col-lg-12 mx-auto bg-light">
-            <h3>
-              <b>Experience</b>
-            </h3>
-          </div>
+        {formValues.skilldescription1 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="body1">
+              {formValues.skilldescription1}
+            </Typography>
+           
+          </Grid>
+          
         )}
-        {formValues.company1 && (
-           <div className="col-lg-12 mx-auto">
-           <p className="lead">
-             <b>
-               {formValues.company1}
-             </b>  {" "}
-             {formValues.company1designation}{" "}
-             {formValues.company1fromyear1} - {formValues.company1toyear1}
-           </p>{" "}
-           {formValues.companydescription1
-           &&( <p className="mt-0">{formValues.companydescription1}</p>)}
-         </div>
-        )} 
-       {formValues.company2 && ( <div className="col-lg-12 mx-auto">
-          <p className="lead">
-            <b>
-              {formValues.company2} 
-            </b>{" "}
-            {formValues.company2designation}{" "}
-             {formValues.company2fromyear2} - {formValues.company2toyear2} 
-          </p>
-          {formValues.companydescription2
-           &&(
-          <p className="mt-0">{formValues.companydescription2}</p>)}
-        </div>
-)}
-       {!allProjectEmpty && (
-        <div className="col-lg-12 mx-auto bg-light">
-          <h3>
-            <b>Projects</b>
-          </h3>
-        </div>)}
-        {formValues.project1 && (
-        <div className="col-lg-12 mx-auto">
-          <p className="lead">
-            <b>{formValues.project1}</b> {" "}{formValues.project1fromyear1} - {formValues.project1toyear1}
-          </p>
-          <p className="mt-0">{formValues.project1designation}</p>
-          <p className="mt-0">{formValues.projectdescription1}</p>
-        </div>
+        {formValues.skill2 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="h6">
+              <strong>{formValues.skill2}</strong>
+            </Typography>
+          </Grid>
         )}
-        {formValues.project2 && (
-        <div className="col-lg-12 mx-auto">
-          <p className="lead">
-            <b>{formValues.project2} </b>{formValues.project2fromyear2} -
-             {formValues.project2toyear2}
-          </p>
-          <p className="mt-0">{formValues.project2designation}</p>
-          <p className="mt-0">{formValues.projectdescription2}</p>
-        </div>
-          )}
-          {!allEducationEmpty && (
-        <div className="col-lg-12 mx-auto bg-light">
-          <h3>
-            <b>Education</b>
-          </h3>
-        </div>)}
-        {formValues.college && (
-        <div className="col-lg-12 mx-auto">
-          <p className="lead">
-            <b>{formValues.college}</b> {formValues.collegequalification1} {" "}
-            {formValues.collegefromyear1} - {formValues.collegetoyear1}
-          </p>
-          <p className="mt-0">{formValues.collegedescription1}</p>
-        </div>
-        )
-        }
-        {formValues.school && (
-        <div className="col-lg-12 mx-auto">
-          <p className="lead">
-            <b>{formValues.school}</b> {formValues.schoolqualification2} {" "}
-            {formValues.schoolfromyear2} - {formValues.schooltoyear2}
-          </p>
-          <p className="mt-0">{formValues.schooldescription2}</p>
-        </div>
+
+        {formValues.skilldescription2 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="body1">
+              {formValues.skilldescription2}
+            </Typography>
+          
+          </Grid>
+          
+        )}
+        {formValues.skill3 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="h6">
+              <strong>{formValues.skill3}</strong>
+            </Typography>
+          </Grid>
+        )}
+
+        {formValues.skilldescription3 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="body1">
+              {formValues.skilldescription3}
+            </Typography>
+          </Grid>
+          
+        )}
+        {formValues.skill4 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="h6">
+              <strong>{formValues.skill4}</strong>
+            </Typography>
+          </Grid>
+        )}
+
+        {formValues.skilldescription4 && (
+          <Grid item lg={12} sx={{ paddingLeft: "5px" }}>
+            <Typography variant="body1">
+              {formValues.skilldescription4}
+            </Typography>
+            
+          </Grid>
+          
+        )}
+       
+       {!allExperienceEmpty && (
+          <Grid
+            item
+            lg={12}
+            sx={{ bgcolor: "text.primary", paddingLeft: "5px" }}
+          >
+            <Typography variant="h5" sx={{ color: "white" }}>
+            Experience
+            </Typography>
+          </Grid>
         )}
         
+        
+        {formValues.company1 && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.company1}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.company1fromyear1} - {formValues.company1toyear1}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.company1designation}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.companydescription1}
+          </Typography>
+          </>
+        )}
+    
+        {formValues.company2 && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.company2}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.company2fromyear2} - {formValues.company2toyear2}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.company2designation}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.companydescription2}
+          </Typography>
+          </>
+        )}
+       
+          {!allProjectEmpty && (
+          <Grid
+            item
+            lg={12}
+            sx={{ bgcolor: "text.primary", paddingLeft: "5px" }}
+          >
+            <Typography variant="h5" sx={{ color: "white" }}>
+            Projects
+            </Typography>
+          </Grid>
+        )}
+        {formValues.project1 && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.project1}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.project1fromyear1} - {formValues.project1toyear1}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.project1designation}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.projectdescription1}
+          </Typography>
+          </>
+        )}
+         {formValues.project2 && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.project2}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.project2fromyear2} - {formValues.project2toyear2}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.project2designation}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.projectdescription2}
+          </Typography>
+          </>
+        )}
+         {!allEducationEmpty && (
+          <Grid
+            item
+            lg={12}
+            sx={{ bgcolor: "text.primary", paddingLeft: "5px" }}
+          >
+            <Typography variant="h5" sx={{ color: "white" }}>
+            Education
+            </Typography>
+          </Grid>
+        )}
+        
+        
+         {formValues.college && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.college}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.collegefromyear1} - {formValues.collegetoyear1}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.collegequalification1}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.collegedescription1}
+          </Typography>
+          </>
+        )}
+        {formValues.school && (<>
+          <Grid container  lg={12} sx={{ paddingInline: "5px",justifyContent:"space-between",  }}>
+            <Typography variant="h6" lg={6}>
+              <strong>{formValues.school}</strong>
+            </Typography>
+            <Typography variant="body1" lg={6}>
+            {formValues.schoolfromyear2} - {formValues.schooltoyear2}
+            </Typography>
+            
+          </Grid>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          <strong> {formValues.schoolqualification2}</strong>
+          </Typography>
+          <Typography variant="body1" lg={12} sx={{ paddingInline: "5px"}}>
+          {formValues.schooldescription2}
+          </Typography>
+          </>
+        )}
+       
       </div>
       <div style={{ textAlign: "end", marginTop: "1rem" }}>
         <Button

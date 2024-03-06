@@ -7,7 +7,9 @@ const StepButtons = ({ nextStep, prevStep, submitHandle, currentStep }) => {
   };
 
   return (
-    <Grid container spacing={2} justifyContent="space-between" style={{ width:'40%',margin:'auto'}}>
+    <Grid container spacing={2} justifyContent="space-around"   alignItems="center"
+      xs={12} md={6} sm={12}
+    style={{ margin:'auto'}}>
       {currentStep > 1 && currentStep < 7 && (
         <Grid item >
           <Button style={{background:"black"}} variant="contained" onClick={prevStep}>

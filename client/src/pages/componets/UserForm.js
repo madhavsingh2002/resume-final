@@ -108,8 +108,7 @@ const UserForm = () => {
     <>
       {/* <TopAppBar step={formValues.step} /> */}
       <Grid container justifyContent="center" alignItems="center" style={{}}>
-        <Grid
-          item
+      <Grid item xs={11} sm={8} md={8} lg={6}
           sx={{
             boxShadow: 1,
 
@@ -117,7 +116,7 @@ const UserForm = () => {
             flexDirection: "column",
             justifyContent: "space-between", // Align items at the bottom
             // height: "50vh", // Height of the container
-            width: "800px",
+            // width: "800px",
             // Width of the container
             padding: "20px",
           }}

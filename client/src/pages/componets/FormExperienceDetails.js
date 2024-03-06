@@ -43,27 +43,28 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
         Experience Details
       </Typography>
       <Grid container spacing={2} alignItems="center" lg={12}>
-        <Grid item md={4} sm={12} xs={12} lg={4}>
+      <Grid item md={12} sm={12} xs={12} lg={4} >
           <TextField
             margin="dense"
             variant="outlined"
             name="company1"
             label="Company 1"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             value={formValues.company1}
             onChange={(e) => {
               setFormValues({ ...formValues, company1: e.target.value });
             }}
           />
         </Grid>
-        <Grid item md={4} sm={6} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4} >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company1fromyear1"
                 type="date"
                 label="From Year"
-                
+                  
+                sx={{width:"100%"}}
                  value={formValues.company1fromyear1 ? dayjs(formValues.company1fromyear1) : null}
                 onChange={(date) => {
                  
@@ -83,15 +84,15 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+        <Grid item md={12} sm={12} xs={12} lg={4} sx={{mt:{xs: 0,sm: 0,md: 0,lg: "44px", }}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
                 name="company1toyear1"
                 type="date"
-                autoFocus={true}
-                label="To Year"
                 
+                label="To Year"
+                sx={{width:"100%"}}
                 value={formValues.company1toyear1 === 'present' ? null : formValues.company1toyear1 ? dayjs(formValues.company1toyear1) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -124,7 +125,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Designation"
             variant="outlined"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             name="company1designation"
             value={formValues.company1designation}
             onChange={(e) => {
@@ -141,7 +142,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Description"
             variant="outlined"
-            style={{ width: "90%" }}
+            style={{ width: "100%" }}
             name="companydescription1"
             value={formValues.companydescription1}
             onChange={(e) => {
@@ -153,24 +154,22 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
       </Grid>
-      <br />
-
-      <br />
+            <br />
       <Grid container spacing={2} alignItems="center" lg={12}>
-        <Grid item md={4} sm={12} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4}>
           <TextField
             margin="dense"
             variant="outlined"
             name="Company2"
             label="Company 2"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             value={formValues.company2}
             onChange={(e) => {
               setFormValues({ ...formValues, company2: e.target.value });
             }}
           />
         </Grid>
-        <Grid item md={4} sm={6} xs={12} lg={4}>
+        <Grid item md={12} sm={12} xs={12} lg={4} >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
@@ -178,7 +177,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 autoFocus={false}
                 label="From Year"
-                
+                sx={{ width: "100%" }}
                 value={formValues.company2fromyear2 ? dayjs(formValues.company2fromyear2) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -194,7 +193,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           </LocalizationProvider>
         </Grid>
 
-        <Grid item md={4} sm={6} xs={12} lg={4} sx={{ mt: "44px" }}>
+        <Grid item md={12} sm={12} xs={12} lg={4} sx={{mt:{xs: 0,sm: 0,md: 0,lg: "44px", }}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker
@@ -202,7 +201,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 autoFocus={false}
                 label="To Year"
-                
+                sx={{width:"100%"}}
                 value={formValues.company2toyear2 === 'present' ? null : formValues.company2toyear2 ? dayjs(formValues.company2toyear2) : null}
                 onChange={(date) => {
                   const formattedDate = date.format("MM-DD-YYYY");
@@ -235,7 +234,7 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
             margin="dense"
             label="Designation"
             variant="outlined"
-            style={{ width: "80%" }}
+            style={{ width: "100%" }}
             name="companyqualification2"
             value={formValues.company2designation}
             onChange={(e) => {
@@ -247,12 +246,12 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
           />
         </Grid>
 
-        <Grid item md={8} sm={8} xs={8} lg={8}>
+        <Grid item md={8} sm={12} xs={12} lg={8}>
           <TextField
             margin="dense"
             label="Description"
             variant="outlined"
-            style={{ width: "90%" }}
+            style={{ width: "100%" }}
             name="companydescription2"
             value={formValues.companydescription2}
             onChange={(e) => {
