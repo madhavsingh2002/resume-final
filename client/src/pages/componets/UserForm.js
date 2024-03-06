@@ -64,6 +64,7 @@ const UserForm = () => {
     skilldescription3:"",
     skill4:"",
     skilldescription4:"",
+    image:"",
   });
 
   // proceed to next step

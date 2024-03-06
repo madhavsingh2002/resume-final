@@ -1,5 +1,8 @@
 import {
+  Box,
   Button,
+  Card,
+  CardMedia,
   Grid,
   List,
   ListItem,
@@ -85,13 +88,31 @@ const Confirm = ({ formValues, setFormValues }) => {
           width: "100%",
         }}
       >
-        {formValues.firstName && (
-          <Grid item xs={12} sm={6} md={4} lg={12} textAlign="center">
-            <Typography variant="h4">
+        
+        <Grid container spacing={2} lg={12} display="flex" >
+        {formValues.image && (
+              <Grid item xs={12} sm={12} md={4} lg={4} sx={{ mt: "1",display:"flex",justifyContent:"flex-end",alignItems:"center",}}>
+                <Box sx={{ width: 200, height: 200,marginTop:"14px" }}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      sx={{border:"none",boxShadow:"none"}}
+                      image={formValues.image}
+                      alt="Uploaded Image"
+                    />
+                  </Card>
+                </Box>
+              </Grid>
+            )}
+          {formValues.firstName && (
+            <Grid item xs={12} sm={12} md={8} lg={8} sx={{ mt: "1",display:"flex",alignItems:"center", justifyContent:"center"}}>
+              <Typography variant="h4">
               {formValues.firstName} {formValues.lastName}
-            </Typography>
-          </Grid>
-        )}
+              </Typography>
+            </Grid>
+          )}
+          
+        </Grid>
         <hr />
         <Grid container spacing={2} lg={12} display="flex" paddingLeft={"5px"}>
           {formValues.email && (

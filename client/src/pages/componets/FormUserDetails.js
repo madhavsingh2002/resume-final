@@ -1,9 +1,32 @@
-import { Grid, TextField, Typography, Alert } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  TextField,
+  Alert,
+  Button,
+  Box,
+  Card,
+  CardMedia,
+  IconButton,
+} from "@mui/material";
 import { useState } from "react";
 
 const FormUserDetails = ({ formValues, setFormValues }) => {
-  console.log(formValues);
-  
+  const [image, setImage] = useState(formValues.image || null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImage(reader.result);
+      setFormValues({ ...formValues, image: reader.result }); // Update formValues with the image data
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <>
@@ -17,14 +40,18 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
         spacing={3} // Adjust spacing between items
       >
         {/* First container */}
-        <Grid item xs={12} md={6}> {/* Use half of the width on small screens, full width on medium screens and up */}
+        <Grid item xs={12} md={6}>
+          {" "}
+          {/* Use half of the width on small screens, full width on medium screens and up */}
           <Grid
             container
             direction="column"
             justifyContent="center"
             alignItems="center"
           >
-            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}> {/* Make each item full width */}
+            <Grid item xs={12} sx={{ mt: 3, width: "100%" }}>
+              {" "}
+              {/* Make each item full width */}
               <TextField
                 label="First Name"
                 name="firstName"
@@ -79,7 +106,9 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
         </Grid>
 
         {/* Second container */}
-        <Grid item xs={12} md={6}> {/* Use half of the width on small screens, full width on medium screens and up */}
+        <Grid item xs={12} md={6}>
+          {" "}
+          {/* Use half of the width on small screens, full width on medium screens and up */}
           <Grid
             container
             direction="column"
@@ -147,6 +176,48 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 }}
               />
             </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={12} sm={12} lg={12}>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {/* Image upload field */}
+            <Grid item xs={12} sx={{ width: "100%" }}>
+              <input
+                accept="image/*"
+                type="file"
+                id="image-upload"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+              />
+              <label htmlFor="image-upload">
+                <Button
+                  color="primary"
+                  style={{ background: "black" }}
+                  variant="contained"
+                  component="span"
+                >
+                  Upload Image
+                </Button>
+              </label>
+            </Grid>
+            {image && (
+              <Grid item xs={12} sx={{ mt: "1" }}>
+                <Box sx={{ width: 200, height: 200 }}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      image={image}
+                      alt="Uploaded Image"
+                    />
+                  </Card>
+                </Box>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Grid>
