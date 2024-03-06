@@ -63,10 +63,11 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 name="company1fromyear1"
                 type="date"
                 label="From Year"
-                value={dayjs(formValues.company1fromyear1)}
+                
+                 value={formValues.company1fromyear1 ? dayjs(formValues.company1fromyear1) : null}
                 onChange={(date) => {
                  
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     company1fromyear1: formattedDate,
@@ -90,9 +91,10 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 autoFocus={true}
                 label="To Year"
-                value={dayjs(formValues.company1toyear1)}
+                
+                value={formValues.company1toyear1 === 'present' ? null : formValues.company1toyear1 ? dayjs(formValues.company1toyear1) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     company1toyear1: formattedDate,
@@ -176,9 +178,10 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 autoFocus={false}
                 label="From Year"
-                value={dayjs(formValues.company2fromyear2)}
+                
+                value={formValues.company2fromyear2 ? dayjs(formValues.company2fromyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     company2fromyear2: formattedDate,
@@ -198,10 +201,11 @@ const FormExperienceDetails = ({ formValues, setFormValues }) => {
                 name="company2toyear2"
                 type="date"
                 autoFocus={false}
-                label="From Year"
-                value={dayjs(formValues.company2toyear2)}
+                label="To Year"
+                
+                value={formValues.company2toyear2 === 'present' ? null : formValues.company2toyear2 ? dayjs(formValues.company2toyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     company2toyear2: formattedDate,

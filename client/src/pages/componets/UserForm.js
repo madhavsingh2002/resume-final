@@ -4,7 +4,7 @@ import Confirm from "./Confirm";
 import FormPersonalDetails from "./FormPersonalDetails";
 import FormUserDetails from "./FormUserDetails";
 import StepButtons from "./StepButtons";
-import Success from "./Success";
+
 import FormExperienceDetails from "./FormExperienceDetails";
 import FormProjectsDetails from "./FormProjectsDetails";
 import FormSkillsDetails from "./FormSkillsDetails";
@@ -154,9 +154,7 @@ const UserForm = () => {
               />
             )}
             {formValues.step === 6 && <Confirm formValues={formValues} />}
-            {formValues.step === 7 && (
-              <Success formValues={formValues} setFormValues={setFormValues} />
-            )}
+          
           </div>
           <br />
           <div style={{ alignSelf: "flex-end", width: "100%" }}>

@@ -65,9 +65,10 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="From Year"
-                value={dayjs(formValues.project1fromyear1)}
+                
+                value={formValues.project1fromyear1 ? dayjs(formValues.project1fromyear1) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     project1fromyear1: formattedDate,
@@ -87,9 +88,10 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 name="project1toyear1"
                 type="date"
                 label="To Year"
-                value={dayjs(formValues.project1toyear1)}
+                
+                value={formValues.project1toyear1 === 'present' ? null : formValues.project1toyear1 ? dayjs(formValues.project1toyear1) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     project1toyear1: formattedDate,
@@ -173,9 +175,10 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="From Year"
-                value={dayjs(formValues.project2fromyear2)}
+                
+                value={formValues.project2fromyear2 ? dayjs(formValues.project2fromyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     project2fromyear2: formattedDate,
@@ -196,9 +199,10 @@ const FormProjectsDetails = ({ formValues, setFormValues }) => {
                 type="date"
                 
                 label="To Year"
-                value={dayjs(formValues.project2toyear2)}
+                
+                value={formValues.project2toyear2 === 'present' ? null : formValues.project2toyear2 ? dayjs(formValues.project2toyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     project2toyear2: formattedDate,

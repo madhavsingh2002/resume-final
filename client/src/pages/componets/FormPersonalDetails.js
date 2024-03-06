@@ -65,10 +65,10 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
               <DatePicker
                 name="collegefromyear1"
                 label="From Year"
-                
-                value={dayjs(formValues.collegefromyear1)} // Convert to Dayjs object
+                autoFocus={false}
+                value={formValues.collegefromyear1 ? dayjs(formValues.collegefromyear1) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY"); // Format the date
+                  const formattedDate = date.format("MM-DD-YYYY"); // Format the date
                   setFormValues({
                     ...formValues,
                     collegefromyear1: formattedDate,
@@ -87,9 +87,10 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 name="collegetoyear1"
                 type="date"
                 label="To Year"
-                value={dayjs(formValues.collegetoyear1)}
+                
+                value={formValues.collegetoyear1 === 'present' ? null : formValues.collegetoyear1 ? dayjs(formValues.collegetoyear1) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     collegetoyear1: formattedDate,
@@ -175,9 +176,9 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 name="schoolfromyear2"
                 type="date"
                 label="From Year"
-                value={dayjs(formValues.schoolfromyear2)}
+                value={formValues.schoolfromyear2 ? dayjs(formValues.schoolfromyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     schoolfromyear2: formattedDate,
@@ -197,9 +198,9 @@ const FormPersonalDetails = ({ formValues, setFormValues }) => {
                 name="schooltoyear2"
                 type="date"
                 label="To Year"
-                value={dayjs(formValues.schooltoyear2)}
+                value={formValues.schooltoyear2 === 'present' ? null : formValues.schooltoyear2 ? dayjs(formValues.schooltoyear2) : null}
                 onChange={(date) => {
-                  const formattedDate = date.format("DD-MM-YYYY");
+                  const formattedDate = date.format("MM-DD-YYYY");
                   setFormValues({
                     ...formValues,
                     schooltoyear2: formattedDate,

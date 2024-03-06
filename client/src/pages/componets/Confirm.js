@@ -302,16 +302,7 @@ const Confirm = ({ formValues, setFormValues }) => {
           <p className="mt-0">{formValues.schooldescription2}</p>
         </div>
         )}
-        {/* <div className="col-lg-12 mx-auto bg-light">
-              <h3><b>Extra-Curriculars/Activities</b></h3>
-        </div>
-        <div className="col-lg-12 mx-3">
-              <ul>
-                <li><p className="lead"><b>Languages: </b>extra_1 </p></li>
-                <li><p className="lead"><b>Hobbies: </b>extra_2 </p></li>
-              </ul>
-              
-        </div> */}
+        
       </div>
       <div style={{ textAlign: "end", marginTop: "1rem" }}>
         <Button
