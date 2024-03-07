@@ -89,30 +89,39 @@ const Confirm = ({ formValues, setFormValues }) => {
         }}
       >
         
-        <Grid container spacing={2} lg={12} display="flex" >
-        {formValues.image && (
-              <Grid item xs={12} sm={6} md={4} lg={4} sx={{ mt: "1",display:"flex",justifyContent:{xs: "center",md: 0,lg: "flex-end",},alignItems:"center",}}>
-                <Box sx={{ width: 200, height: 200,marginTop:"14px" }}>
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      sx={{border:"none",boxShadow:"none"}}
-                      image={formValues.image}
-                      alt="Uploaded Image"
-                    />
-                  </Card>
-                </Box>
-              </Grid>
-            )}
-          {formValues.firstName && (
-            <Grid item xs={12} sm={6} md={8} lg={8} sx={{ mt: "1",display:"flex",alignItems:"center", justifyContent:"center"}}>
-              <Typography variant="h4">
-              {formValues.firstName} {formValues.lastName}
-              </Typography>
-            </Grid>
-          )}
-          
-        </Grid>
+        <Grid container spacing={2} lg={12} display="flex">
+  {!formValues.image && (
+    <Grid item xs={12} md={12} lg={12} sx={{ mt: "1", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Typography variant="h4">
+        {formValues.firstName} {formValues.lastName}
+      </Typography>
+    </Grid>
+  )}
+
+  {formValues.image && (
+    <Grid item xs={12} sm={6} md={4} lg={4} sx={{ mt: "1", display: "flex", justifyContent: { xs: "center", md: 0, lg: "flex-end" }, alignItems: "center" }}>
+      <Box sx={{ width: 200, height: 200, marginTop: "14px" }}>
+        <Card>
+          <CardMedia
+            component="img"
+            sx={{ border: "none", boxShadow: "none" }}
+            image={formValues.image}
+            alt="Uploaded Image"
+          />
+        </Card>
+      </Box>
+    </Grid>
+  )}
+
+  {formValues.firstName && formValues.image && (
+    <Grid item xs={12} sm={6} md={8} lg={8} sx={{ mt: "1", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Typography variant="h4">
+        {formValues.firstName} {formValues.lastName}
+      </Typography>
+    </Grid>
+  )}
+</Grid>
+
         <hr />
         <Grid container spacing={2} lg={12} display="flex" paddingLeft={"5px"}>
           {formValues.email && (

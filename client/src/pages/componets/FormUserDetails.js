@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { useState } from "react";
-
+import CancelIcon from '@mui/icons-material/Cancel';
 const FormUserDetails = ({ formValues, setFormValues }) => {
   const [image, setImage] = useState(formValues.image || null);
 
@@ -27,7 +27,10 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
       reader.readAsDataURL(file);
     }
   };
-
+  const handleRemoveImage = () => {
+    setImage(null);
+    setFormValues({ ...formValues, image: null }); // Clear the image data in formValues
+  };
   return (
     <>
       <Typography variant="h6" style={{ textAlign: "center" }}>
@@ -186,7 +189,7 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
             alignItems="center"
           >
             {/* Image upload field */}
-            <Grid item xs={12} sx={{ width: "100%" }}>
+            <Grid item xs={12} sx={{ width: "100%", }}>
               <input
                 accept="image/*"
                 type="file"
@@ -205,9 +208,10 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                 </Button>
               </label>
             </Grid>
+                 
             {image && (
               <Grid item xs={12} sx={{ mt: "1" }}>
-                <Box sx={{ width: 200, height: 200 }}>
+                <Box sx={{ width: 200, height: 250,display:"flex",flexDirection:"column", justifyContent:"center" }}>
                   <Card>
                     <CardMedia
                       component="img"
@@ -215,6 +219,14 @@ const FormUserDetails = ({ formValues, setFormValues }) => {
                       alt="Uploaded Image"
                     />
                   </Card>
+                  <Button
+                  sx={{mt:3}}
+                  component="span"
+                  variant="outlined" color="error"
+                  onClick={handleRemoveImage}
+                >
+                  cancel
+                </Button>
                 </Box>
               </Grid>
             )}
